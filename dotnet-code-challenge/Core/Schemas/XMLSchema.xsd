@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="meeting">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="date"/>
+        <xs:element ref="MeetingType"/>
+        <xs:element ref="track"/>
+        <xs:element ref="Meetingid"/>
+        <xs:element ref="races"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="date" type="xs:string"/>
+  <xs:element name="MeetingType" type="xs:NCName"/>
+  <xs:element name="track">
+    <xs:complexType>
+      <xs:attribute name="TranslatedName" use="required" type="xs:NCName"/>
+      <xs:attribute name="club" use="required"/>
+      <xs:attribute name="condition" use="required" type="xs:NCName"/>
+      <xs:attribute name="country" use="required" type="xs:NCName"/>
+      <xs:attribute name="location" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="state" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Meetingid" type="xs:integer"/>
+  <xs:element name="races">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="race"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="race">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="NumberOfRunners"/>
+        <xs:element ref="start_time"/>
+        <xs:element ref="distance"/>
+        <xs:element ref="horses"/>
+        <xs:element ref="prices"/>
+      </xs:sequence>
+      <xs:attribute name="Status" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="number" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NumberOfRunners" type="xs:integer"/>
+  <xs:element name="start_time" type="xs:string"/>
+  <xs:element name="distance">
+    <xs:complexType>
+      <xs:attribute name="metres" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="price"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="price">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="priceType"/>
+        <xs:element ref="horses"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="priceType" type="xs:NCName"/>
+  <xs:element name="horses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="horse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="horse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="number"/>
+          <xs:element ref="trainer"/>
+          <xs:element ref="training_location"/>
+          <xs:element ref="owners"/>
+          <xs:element ref="colours"/>
+          <xs:element ref="current_blinker_ind"/>
+          <xs:element ref="prizemoney_won"/>
+        </xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="last_four_starts"/>
+          <xs:element ref="last_ten_starts"/>
+        </xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="jockey"/>
+          <xs:element ref="barrier"/>
+          <xs:element ref="weight"/>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="Price" type="xs:decimal"/>
+      <xs:attribute name="age" type="xs:integer"/>
+      <xs:attribute name="colour" type="xs:NCName"/>
+      <xs:attribute name="country" type="xs:NCName"/>
+      <xs:attribute name="foaling_date"/>
+      <xs:attribute name="id" type="xs:integer"/>
+      <xs:attribute name="name" type="xs:NCName"/>
+      <xs:attribute name="number" type="xs:integer"/>
+      <xs:attribute name="sex" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="number" type="xs:integer"/>
+  <xs:element name="trainer">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="statistics">
+          <xs:attribute name="id" use="required" type="xs:integer"/>
+          <xs:attribute name="name" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="training_location" type="xs:NCName"/>
+  <xs:element name="owners" type="xs:string"/>
+  <xs:element name="colours" type="xs:string"/>
+  <xs:element name="current_blinker_ind" type="xs:NCName"/>
+  <xs:element name="prizemoney_won" type="xs:integer"/>
+  <xs:element name="last_four_starts" type="xs:integer"/>
+  <xs:element name="last_ten_starts" type="xs:integer"/>
+  <xs:element name="jockey">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="statistics">
+          <xs:attribute name="id" use="required" type="xs:integer"/>
+          <xs:attribute name="name" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="barrier" type="xs:integer"/>
+  <xs:element name="weight">
+    <xs:complexType>
+      <xs:attribute name="allocated" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="statistics">
+    <xs:sequence>
+      <xs:element ref="statistics"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="statistics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="statistic"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="statistic">
+    <xs:complexType>
+      <xs:attribute name="firsts" use="required" type="xs:integer"/>
+      <xs:attribute name="seconds" use="required" type="xs:integer"/>
+      <xs:attribute name="thirds" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
