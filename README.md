@@ -1,7 +1,23 @@
 Assumptions/Instructions
 ========================
-1. Two separate classes and methods have been created to fetch the data from XML and JSON files respectively.
-2. Unable to write the testcases within 2 hours time.
-3. Assumption is that the same format of the files would be uploaded each time. In the real world scenarios, these files would be validated against a schema file such as XSD for XML.
-4. Both the XmlData class and JsonData classes have been instantiated from the startup class (Program.cs)
-5. There are no external dependencies been used while creating the solution. However, I have searched through the internet to find out the appropriate functions to fetch the XML and JSON data during the course of this exercise.
+Main solution has been structed as below:
+
+Core
+ - Interfaces
+      - All Interface can be placed here. In this case IExtractData is the one interface that's being implemented by both XML and JSON extracts.
+ - Constants
+      - All application level file-paths have been defined here. In this case XML file, XSD file, JSON file and JSON schema file paths have been placed here.
+ - Logging
+      - Entire application level static error messages have been placed here. These messages have been referred through out the application.
+ - Models
+      - Application specific models have been defined here. In our case it is Output model which is the same model returned by both XML and JSON extracts.
+ - Modules
+      - Two main modules to extract the data have been defined here. 
+ - Schemas
+      - Both XSD and JSON schema files have been defined here.
+      
+ All the provided source files have been placed under FeedData folder.
+ 
+ Unit Test
+ 
+ Two Unit tests each for XML and JSON files have been written. One is a valid test case and the other is an incorrect schema validation.
